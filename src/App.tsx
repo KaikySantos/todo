@@ -1,7 +1,7 @@
 import styles from './App.module.css';
 
 import { Header } from './components/Header';
-import { TodoContainer } from './components/TodoContainer';
+import { TodoInput } from './components/TodoInput';
 
 import './global.css';
 
@@ -10,7 +10,7 @@ function App() {
     <div className={styles.app}>
       <Header />
 
-      <TodoContainer />
+      <TodoInput />
     </div>
   )
 }

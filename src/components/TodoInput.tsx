@@ -1,10 +1,10 @@
 import { ChangeEvent, FormEvent, InvalidEvent, useState } from 'react';
 
-import styles from './TodoContainer.module.css';
+import styles from './TodoInput.module.css';
 
 import { PlusCircle } from 'phosphor-react';
 
-export function TodoContainer() {
+export function TodoInput() {
   const [newTodoText, setNewTodoText] = useState('');
 
   function handleChangeNewText(event: ChangeEvent<HTMLInputElement>) {
