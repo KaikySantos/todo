@@ -32,3 +32,22 @@
 .completedTasks {
   color: var(--purple-300);
 }
+
+.emptyList {
+  margin-top: 1.5rem;
+  border-radius: 8px;
+  border-top: 2px solid var(--gray-400);
+
+  text-align: center;
+  padding: 4rem 0;
+
+  color: var(--gray-300);
+}
+
+.emptyList p {
+  font-weight: 700;
+}
+
+.emptyList p span {
+  font-weight: 400;
+}
