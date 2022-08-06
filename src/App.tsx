@@ -1,15 +1,12 @@
 import styles from './App.module.css';
+import { Header } from './components/Header';
 
 import './global.css';
-
-import imageLogo from './assets/image-logo.svg';
 
 function App() {
   return (
     <div className={styles.app}>
-      <header className={styles.header}>
-        <img src={imageLogo} alt="Imagem logo" />
-      </header>
+      <Header />
     </div>
   )
 }
