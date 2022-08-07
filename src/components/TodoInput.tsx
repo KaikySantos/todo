@@ -4,7 +4,16 @@ import styles from './TodoInput.module.css';
 
 import { PlusCircle } from 'phosphor-react';
 
-export function TodoInput() {
+interface TodoListProps {
+  text: string;
+  isFinished: boolean;
+}
+
+interface TodoInput {
+  onAddTask: (newTask: TodoListProps) => void;
+}
+
+export function TodoInput({ onAddTask }: TodoInput) {
   const [newTodoText, setNewTodoText] = useState('');
 
   function handleChangeNewText(event: ChangeEvent<HTMLInputElement>) {
@@ -18,6 +27,13 @@ export function TodoInput() {
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
+
+    onAddTask({
+      text: newTodoText,
+      isFinished: false
+    });
+
+    setNewTodoText('');
   }
 
   const isNewTodoTextEmpty = newTodoText.length === 0;

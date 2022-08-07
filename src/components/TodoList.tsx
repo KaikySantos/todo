@@ -10,20 +10,16 @@ interface TodoListProps {
   todoList: TodoListType[];
 }
 
-function getNumberOfCompletedTasks(todoList: TodoListType[]) {
-  return todoList.reduce((count, task) => {
+export function TodoList({ todoList }: TodoListProps) {
+  const numberOfCompletedTasks = todoList.reduce((count, task) => {
     if (task.isFinished) {
       count++;
     }
 
     return count;
   }, 0);
-}
 
-export function TodoList({ todoList }: TodoListProps) {
-  const numberOfCompletedTasks = getNumberOfCompletedTasks(todoList);
-
-  const textCompletedTasks = numberOfCompletedTasks === 0 ?
+  const textCompletedTasks = todoList.length === 0 ?
     '0' : `${numberOfCompletedTasks} de ${todoList.length}`
 
   return (

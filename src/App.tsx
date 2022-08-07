@@ -14,26 +14,17 @@ interface TodoListProps {
 }
 
 function App() {
-  const [todoList, setTodoList] = useState<TodoListProps[]>([
-    {
-      text: 'Teste',
-      isFinished: false
-    },
-    {
-      text: 'Teste 2',
-      isFinished: true
-    },
-    {
-      text: 'Teste 2',
-      isFinished: true
-    },
-  ]);
+  const [todoList, setTodoList] = useState<TodoListProps[]>([]);
+
+  function onAddTask(newTask: TodoListProps) {
+    setTodoList([...todoList, newTask]);
+  }
 
   return (
     <div className={styles.app}>
       <Header />
 
-      <TodoInput />
+      <TodoInput onAddTask={onAddTask} />
 
       <TodoList todoList={todoList} />
     </div>
