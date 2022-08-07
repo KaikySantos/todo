@@ -9,9 +9,10 @@ type TodoListType = {
 interface TodoListProps {
   todoList: TodoListType[];
   onDeleteTask: (taskDelete: TodoListType) => void;
+  onChangeTaskStatus: (taskEdit: TodoListType) => void;
 }
 
-export function TodoList({ todoList, onDeleteTask }: TodoListProps) {
+export function TodoList({ todoList, onDeleteTask, onChangeTaskStatus }: TodoListProps) {
   const numberOfCompletedTasks = todoList.reduce((count, task) => {
     if (task.isFinished) {
       count++;
@@ -25,6 +26,10 @@ export function TodoList({ todoList, onDeleteTask }: TodoListProps) {
 
   function handleDeleteTask(taskDelete: TodoListType) {
     onDeleteTask(taskDelete);
+  }
+
+  function handleTaskClick(taskEdit: TodoListType) {
+    onChangeTaskStatus(taskEdit);
   }
 
   return (
@@ -53,13 +58,16 @@ export function TodoList({ todoList, onDeleteTask }: TodoListProps) {
       ) : (
         <div className={styles.taskList}>
           {todoList.map(task => (
-            <div key={task.text} className={task.isFinished ? styles.taskFinished : styles.task}>
+            <div
+              key={task.text}
+              className={task.isFinished ? styles.taskFinished : styles.task}
+            >
               {task.isFinished ? (
-                <CheckCircle className={styles.checkboxSelected} size={20} weight="fill" />
+                <CheckCircle onClick={() => handleTaskClick(task)} className={styles.checkboxSelected} size={20} weight="fill" />
                 ) : (
-                <Circle className={styles.checkbox} size={20} weight="bold" />
+                <Circle onClick={() => handleTaskClick(task)} className={styles.checkbox} size={20} weight="bold" />
               )}
-              <p>{task.text}</p>
+              <p onClick={() => handleTaskClick(task)}>{task.text}</p>
               <button type="button" onClick={() => handleDeleteTask(task)}>
                 <Trash size={18} />
               </button>

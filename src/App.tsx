@@ -26,13 +26,29 @@ function App() {
     setTodoList(newTodoList);
   }
 
+  function onChangeTaskStatus(taskEdit: TodoListProps) {
+    const todoListClone = [...todoList];
+
+    todoListClone.forEach(task => {
+      if (task.text === taskEdit.text) {
+        task.isFinished = !task.isFinished;
+      }
+    });
+
+    setTodoList(todoListClone);
+  }
+
   return (
     <div className={styles.app}>
       <Header />
 
       <TodoInput onAddTask={onAddTask} />
 
-      <TodoList todoList={todoList} onDeleteTask={onDeleteTask} />
+      <TodoList
+        todoList={todoList}
+        onDeleteTask={onDeleteTask}
+        onChangeTaskStatus={onChangeTaskStatus}
+      />
     </div>
   )
 }
