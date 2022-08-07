@@ -8,9 +8,10 @@ type TodoListType = {
 
 interface TodoListProps {
   todoList: TodoListType[];
+  onDeleteTask: (taskDelete: TodoListType) => void;
 }
 
-export function TodoList({ todoList }: TodoListProps) {
+export function TodoList({ todoList, onDeleteTask }: TodoListProps) {
   const numberOfCompletedTasks = todoList.reduce((count, task) => {
     if (task.isFinished) {
       count++;
@@ -20,7 +21,11 @@ export function TodoList({ todoList }: TodoListProps) {
   }, 0);
 
   const textCompletedTasks = todoList.length === 0 ?
-    '0' : `${numberOfCompletedTasks} de ${todoList.length}`
+    '0' : `${numberOfCompletedTasks} de ${todoList.length}`;
+
+  function handleDeleteTask(taskDelete: TodoListType) {
+    onDeleteTask(taskDelete);
+  }
 
   return (
     <div className={styles.todoList}>
@@ -55,7 +60,7 @@ export function TodoList({ todoList }: TodoListProps) {
                 <Circle className={styles.checkbox} size={20} weight="bold" />
               )}
               <p>{task.text}</p>
-              <button type="button">
+              <button type="button" onClick={() => handleDeleteTask(task)}>
                 <Trash size={18} />
               </button>
             </div>

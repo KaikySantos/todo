@@ -20,13 +20,19 @@ function App() {
     setTodoList([...todoList, newTask]);
   }
 
+  function onDeleteTask(taskDelete: TodoListProps) {
+    const newTodoList = todoList.filter(task => taskDelete.text !== task.text);
+
+    setTodoList(newTodoList);
+  }
+
   return (
     <div className={styles.app}>
       <Header />
 
       <TodoInput onAddTask={onAddTask} />
 
-      <TodoList todoList={todoList} />
+      <TodoList todoList={todoList} onDeleteTask={onDeleteTask} />
     </div>
   )
 }
