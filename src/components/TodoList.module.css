@@ -51,3 +51,63 @@
 .emptyList p span {
   font-weight: 400;
 }
+
+.taskList {
+  margin-top: 1.5rem;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.task, .taskFinished {
+  padding: 1rem;
+  background: var(--gray-500);
+  border-radius: 8px;
+  border: 1px solid var(--gray-400);
+
+  display: flex;
+  align-items: flex-start;
+
+  cursor: pointer;
+}
+.taskFinished {
+  background: var(--gray-500);
+  border: 1px solid var(--gray-500);
+}
+
+.task + .task, .task + .taskFinished, .taskFinished + .taskFinished {
+  margin-top: 0.75rem;
+}
+
+.checkbox {
+  color: var(--blue-300);
+}
+.checkboxSelected {
+  color: var(--purple-300);
+}
+
+.task > p, .taskFinished > p {
+  flex: 1;
+  margin: 0 0.75rem;
+  color: var(--gray-100);
+}
+.taskFinished > p {
+  text-decoration: line-through;
+  color: var(--gray-300);
+}
+
+.task > button, .taskFinished > button {
+  border-radius: 8px;
+  background: none;
+  padding: 0.2rem;
+  border: none;
+  color: var(--gray-300);
+  cursor: pointer;
+  line-height: 0;
+  transition: all 0.2s;
+}
+
+.task > button:hover, .taskFinished > button:hover {
+  color: var(--red-500);
+  background: var(--gray-400);
+}
